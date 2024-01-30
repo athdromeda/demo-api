@@ -1,26 +1,18 @@
 const testDiv = document.getElementById("test");
 
-function card(judul) {
+function card(nama, harga) {
   return `
     <div class="card">
-        <h3>${judul}</h3>
+        <h3>${nama}</h3>
+        <h4>${harga}</h4>
     </div>`;
 }
 
-// const card = (judul) => {
-//   return `
-//     <div class="card">
-//         <h3>${judul}</h3>
-//     </div>`;
-// }; //Arrow function
-
-fetch("https://katarandom.vercel.app/api")
-.then((res) => res.json())
-.then((data) => {
-    console.log(data.kata);
-    data.kata.map((kata) => {
-      testDiv.innerHTML += card(kata);
+fetch("https://data-kamar.vercel.app/kamar/deluxe")
+  .then((res) => res.json())
+  .then((res) => {
+    console.log(res.data);
+    res.data.map((kamar) => {
+      testDiv.innerHTML += card(kamar.nama_kamar, kamar.harga);
     });
   });
-
-
